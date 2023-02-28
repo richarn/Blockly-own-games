@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en-ES">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="https://unpkg.com/blockly/blockly.min.js"></script>
+    <script src="https://unpkg.com/blockly"></script>
+    <script src="https://unpkg.com/blockly/javascript_compressed"></script>
+    <script src="https://unpkg.com/blockly/python_compressed"></script>
+    <script src="https://unpkg.com/blockly/msg/es.js"></script>
+    <script src="blocks.js"></script>
+  
+</head>
+
+<body>
+
+  <div class="content">
+
+    <div class="demo">
+      <div id="blocklyDiv" style="height: 600px; width: 900px;"></div>
+      <button onclick="updateCode();">Ejecutar</button>
+    </div>
+  
+    <div class="space-game">
+      <div id="cuadrado"></div>
+      <img class="img-flag" src="https://cdn-icons-png.flaticon.com/512/33/33871.png"/>
+    </div>
+  
+  </div>
+  
+  
+
+  </div>
+</body>
+<script>    
+  
+
+    const toolbox = {
+        "kind": "categoryToolbox",
+        "contents": [
+            {
+            "kind": "category",
+            "name": "Movements",
+            "contents": [
+                {
+                "kind": "block",
+                "type": "mover",
+                },
+                {
+                "kind": "block",
+                "type": "move_up",
+                },
+                {
+                "kind": "block",
+                "type": "move_down"
+                },
+                {
+                "kind": "block",
+                "type": "move_left"
+                },
+                {
+                "kind": "block",
+                "type": "move_rigth"
+                },
+            ]
+            },
+        ]
+    }
+    var workspace = Blockly.inject('blocklyDiv', {toolbox:toolbox});
+
+    function updateCode() {
+      const code = Blockly.JavaScript.workspaceToCode(workspace);
+      console.log("generated code:", code);
+      eval(code);
+    }
+    // workspace.addChangeListener(updateCode);
+</script>
+<script src="move.js"></script>
+
+</html>
