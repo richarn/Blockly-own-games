@@ -68,8 +68,15 @@
     }
     var workspace = Blockly.inject('blocklyDiv', {toolbox:toolbox});
 
+    function highlightBlock(id) {
+      workspace.highlightBlock(id);
+    }
+
     function updateCode() {
+      Blockly.JavaScript.addReservedWords('code');
+      Blockly.JavaScript.STATEMENT_PREFIX = 'highlightBlock(%1);\n';
       const code = Blockly.JavaScript.workspaceToCode(workspace);
+
       console.log("generated code:", code);
       eval(code);
     }

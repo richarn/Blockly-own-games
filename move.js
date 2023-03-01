@@ -51,6 +51,13 @@ function move_rigth() {
 	x= x + 100;
 	cuadradito.style.left = x + 'px';
 }
+
+// function rotate_rigth(){
+// 	r = 45;
+// 	cuadradito.style.rotate = r + 'deg';
+// 	console.log(cuadradito);
+// }
+
 // window.onkeyup = movimiento;
 
 function mover(direccion){
@@ -58,14 +65,21 @@ function mover(direccion){
 	if (direccion == "move_up") {
 		move_up();
 	}
+
 	if (direccion == "move_down") {
 		move_down();
 	}
+
 	if (direccion == "move_left") {
 		move_left();
 	}
+
 	if (direccion == "move_rigth") {
 		move_rigth();
 	}
+	//rotate function
+	// if (direccion == "rotate_rigth") {
+	// 	rotate_rigth();
+	// }
 	return "test";
 }
