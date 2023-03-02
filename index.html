@@ -29,7 +29,7 @@
 	  
     </div>
 	<p>
-		<button onclick="" id="stepButton">Step JavaScript</button>
+		<button onclick="updateCodeSteps()" id="stepButton">Step JavaScript</button>
 	</p>
   
     <div class="space-game">
@@ -96,16 +96,58 @@
 		// nextStep();
 		
 	}
+
+  var myInterpreter = {};
+
+  function initApi(interpreter, globalObject) {
+    // Add an API function for the move() block.
+    var wrapper = function(text) {
+      return mover(arguments.length ? text : '');
+    };
+    interpreter.setProperty(globalObject, 'mover',
+        interpreter.createNativeFunction(wrapper));
+
+    // Add an API function for the prompt() block.
+    wrapper = function(text) {
+      return highlightBlock(text);
+    };
+    interpreter.setProperty(globalObject, 'highlightBlock',
+        interpreter.createNativeFunction(wrapper));
+  } 
+
+  function updateCodeSteps() {
+    Blockly.JavaScript.STATEMENT_PREFIX = 'highlightBlock(%1);\n';
+    Blockly.JavaScript.addReservedWords('code');
+    
+    const code = Blockly.JavaScript.workspaceToCode(workspace);
+    
+    myInterpreter = new Interpreter(code, initApi);
+    console.log("myInterpreter", myInterpreter);
+
+    console.log("generated code:", code);
+    //eval(code);
+    nextStep();
+    
+  }
+
+  var wait_flag = false;
 	
 	
-	// function nextStep() {
-	// 	var codigo = Blockly.JavaScript.workspaceToCode(workspace);
-	// 	var myInterpreter = new Interpreter(codigo);
-  	// 	if (myInterpreter.step()) {
-    // 		setTimeout(nextStep, 10);
+	function nextStep() {
+    //console.log("myInterpreter2", myInterpreter);
+	 	
+   	if (myInterpreter.step()) {
+      let timer = 1;
+      if(wait_flag){
+        timer = 100;
+      }else{
+        timer = 1;
+      }
+      wait_flag = !wait_flag;
+   		setTimeout(nextStep, timer);
 			
-	// 	}
-	// }
+	 	}
+	}
 	
 
 
