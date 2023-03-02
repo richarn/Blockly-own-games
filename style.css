@@ -2,10 +2,8 @@
     background-color: red;
     height: 40px;
     width: 40px;
-    top: 0px;
-    left: 0px;
     border-radius: 0px;
-    position: absolute;
+    position: relative;
     transform:rotate();
  }
 

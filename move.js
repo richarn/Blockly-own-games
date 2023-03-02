@@ -1,5 +1,5 @@
 let x = 0;
-let y = 0;
+var y = 0;
 let cuadradito = document.getElementById('cuadrado');
 /*
 *Al llevar el eje de coordenadas al documento html hacemos una traducción
@@ -65,15 +65,15 @@ function mover(direccion){
 	if (direccion == "move_up") {
 		move_up();
 	}
-
+	
 	if (direccion == "move_down") {
 		move_down();
 	}
-
+	
 	if (direccion == "move_left") {
 		move_left();
 	}
-
+	
 	if (direccion == "move_rigth") {
 		move_rigth();
 	}

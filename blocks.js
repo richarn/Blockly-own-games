@@ -26,12 +26,13 @@ Blockly.JavaScript['mover'] = function(block) {
     // returns a string for testing.
     var argument0 = Blockly.JavaScript.valueToCode(block, 'VALUE',
     Blockly.JavaScript.ORDER_FUNCTION_CALL) || '\'\'';
-    console.log("argument0", argument0);
+    console.log("argument0: ", argument0);
     // let result = ['mover('+argument0+')', Blockly.JavaScript.ORDER_MEMBER];
     // console.log("result", result);
     return 'mover('+argument0+')';
-    
 };
+
+
 
 
   //genera el bloque
@@ -50,7 +51,7 @@ Blockly.JavaScript['mover'] = function(block) {
     //generador move up
     Blockly.JavaScript['move_up'] = function(block) {
       // returns a string for testing.
-      return ['"move_up "', Blockly.JavaScript.ORDER_MEMBER];
+      return ['"move_up"', Blockly.JavaScript.ORDER_MEMBER];
     };
 
     Blockly.Blocks['move_down'] = {

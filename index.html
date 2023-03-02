@@ -2,6 +2,14 @@
 <html lang="en-ES">
 <head>
     <meta charset="UTF-8">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+	<link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css" rel="stylesheet"/>
+	
+	<script src="acorn_interpreter.js"></script>
+	<script src="acorn.js"></script>
+	<script src="interpreter.js"></script>
+
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="https://unpkg.com/blockly/blockly.min.js"></script>
     <script src="https://unpkg.com/blockly"></script>
@@ -9,22 +17,25 @@
     <script src="https://unpkg.com/blockly/python_compressed"></script>
     <script src="https://unpkg.com/blockly/msg/es.js"></script>
     <script src="blocks.js"></script>
-  
-</head>
 
 <body>
 
   <div class="content">
 
     <div class="demo">
-      <div id="blocklyDiv" style="height: 600px; width: 900px;"></div>
-      <button onclick="updateCode();">Ejecutar</button>
+		<button onclick="updateCode();">Ejecutar</button>
+		<div id="blocklyDiv" style="height: 600px; width: 900px;"></div>
+	
+	  
     </div>
+	<p>
+		<button onclick="" id="stepButton">Step JavaScript</button>
+	</p>
   
     <div class="space-game">
-      <div id="cuadrado"></div>
-      <img class="img-flag" src="https://cdn-icons-png.flaticon.com/512/33/33871.png"/>
-    </div>
+      	<div id="cuadrado"></div>
+      	<img class="img-flag" src="https://cdn-icons-png.flaticon.com/512/33/33871.png"/>
+	</div>
   
   </div>
   
@@ -34,6 +45,7 @@
 </body>
 <script>    
   
+
 
     const toolbox = {
         "kind": "categoryToolbox",
@@ -69,17 +81,34 @@
     var workspace = Blockly.inject('blocklyDiv', {toolbox:toolbox});
 
     function highlightBlock(id) {
-      workspace.highlightBlock(id);
+      	workspace.highlightBlock(id);
     }
 
-    function updateCode() {
-      Blockly.JavaScript.addReservedWords('code');
-      Blockly.JavaScript.STATEMENT_PREFIX = 'highlightBlock(%1);\n';
-      const code = Blockly.JavaScript.workspaceToCode(workspace);
+	
+	function updateCode() {
+		const code = Blockly.JavaScript.workspaceToCode(workspace);
+		Blockly.JavaScript.STATEMENT_PREFIX = 'highlightBlock(%1);\n';
+		Blockly.JavaScript.addReservedWords('code');
+		
 
-      console.log("generated code:", code);
-      eval(code);
-    }
+		console.log("generated code:", code);
+		eval(code);
+		// nextStep();
+		
+	}
+	
+	
+	// function nextStep() {
+	// 	var codigo = Blockly.JavaScript.workspaceToCode(workspace);
+	// 	var myInterpreter = new Interpreter(codigo);
+  	// 	if (myInterpreter.step()) {
+    // 		setTimeout(nextStep, 10);
+			
+	// 	}
+	// }
+	
+
+
     // workspace.addChangeListener(updateCode);
 </script>
 <script src="move.js"></script>
