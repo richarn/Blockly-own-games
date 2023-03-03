@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="style.css">
+    <title>closest</title>
+
+</head>
+<body>
+    
+    <div class="squad1" id="sq1"></div>
+    <div class="squad2" id="sq2"></div>
+
+    <script>
+
+    const elemento = document.getElementById('sq1');
+    const posicione1 = elemento.getBoundingClientRect();
+    
+    const elemento2 = document.getElementById('sq2');
+    const posicione2 = elemento2.getBoundingClientRect();
+
+    if( posicione1.top == posicione2.top) { 
+        alert("llegaste!!!");
+    }
+    console.log("top:", posicione1.top, "rigth:", posicione1.right, "bottom:", posicione1.bottom, "left: ", posicione1.left);
+    </script>
+
+</body>
+</html>
