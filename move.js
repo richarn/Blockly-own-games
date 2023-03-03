@@ -33,22 +33,22 @@ let cuadradito = document.getElementById('cuadrado');
 // }
 
 function move_up() {
-	y = y + 100;                               
+	y = y + 96;                               
 	cuadradito.style.top = (-y) + 'px';
 }
 
 function move_down() {
-	y = y - 100;                               
+	y = y - 96;                               
 	cuadradito.style.top = (-y) + 'px';
 }
 
 function move_left() {
-	x= x - 100;
+	x= x - 96;
 	cuadradito.style.left = x +'px';
 }
 
 function move_rigth() {
-	x= x + 100;
+	x= x + 96;
 	cuadradito.style.left = x + 'px';
 }
 

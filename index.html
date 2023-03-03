@@ -41,43 +41,25 @@
 
 <script>
 
-const flag = document.getElementById('cuadrado');
 
-
+    var flag = document.getElementById('flag');
+    var bandera = flag.getBoundingClientRect();
+    
+    console.log('flag-top:', bandera);
+    
 function ballPosition() {
-    const flag_pos = flag.getBoundingClientRect();
-    console.log('cuadrado-top:', flag_pos.top, 'cuadrado-left:', flag_pos.left);
-    // alert(flag_pos.top);
+    const element = document.getElementById('cuadrado');
+    const ball = element.getBoundingClientRect();
+
+    if( ball.top == 341 && ball.left == 1394 ){
+        alert("Adentro, lo lograste!").destroy();
+    }
+    console.log('cuadrado-top:', ball.top, 'cuadrado-left:', ball.left);
+
 }
+
 const toolbox = {
     "contents": [
-    {
-    "kind": "CATEGORY",
-    "name": "Logic",
-    "colour": "%{BKY_LOGIC_HUE}",
-    "contents": [
-    {
-        "kind": "BLOCK",
-        "type": "controls_if"
-    },
-    {
-        "kind": "BLOCK",
-        "type": "logic_compare"
-    },
-    {
-        "kind": "BLOCK",
-        "type": "logic_operation"
-    },
-    {
-        "kind": "BLOCK",
-        "type": "logic_negate"
-    },
-    {
-        "kind": "BLOCK",
-        "type": "logic_boolean"
-    }
-    ]
-    },
     {
     "kind": "CATEGORY",
     "name": "Loops",
@@ -98,94 +80,6 @@ const toolbox = {
     {
         "kind": "BLOCK",
         "type": "controls_whileUntil"
-    }
-    ]
-    },
-    {
-    "kind": "CATEGORY",
-    "name": "Math",
-    "colour": "%{BKY_MATH_HUE}",
-    "contents": [
-    {
-        "kind": "BLOCK",
-        "type": "math_number"
-    },
-    {
-        "kind": "BLOCK",
-        "type": "math_arithmetic",
-        "inputs": {
-        "A": {
-            "shadow": {
-            "type": "math_number",
-            "fields": {"NUM": 1}
-            }
-        },
-        "B": {
-            "shadow": {
-            "type": "math_number",
-            "fields": {"NUM": 1}
-            }
-        }
-        }
-    },
-    {
-        "kind": "BLOCK",
-        "type": "math_single",
-        "inputs": {
-        "NUM": {
-            "shadow": {
-            "type": "math_number",
-            "fields": {"NUM": 9}
-            }
-        }
-        }
-    }
-    ]
-    },
-    {
-    "kind": "CATEGORY",
-    "name": "Text",
-    "colour": "%{BKY_TEXTS_HUE}",
-    "contents": [
-    {
-        "kind": "BLOCK",
-        "type": "text"
-    },
-    {
-        "kind": "BLOCK",
-        "type": "text_length",
-        "inputs": {
-        "VALUE": {
-            "shadow": {
-            "type": "text",
-            "fields": {"TEXT": "abc"}
-            }
-        }
-        }
-    },
-    {
-        "kind": "BLOCK",
-        "type": "text_print",
-        "inputs": {
-        "TEXT": {
-            "shadow": {
-            "type": "text",
-            "fields": {"TEXT": "abc"}
-            }
-        }
-        }
-    },
-    {
-        "kind": "BLOCK",
-        "type": "text_prompt_ext",
-        "inputs": {
-        "TEXT": {
-            "shadow": {
-            "type": "text",
-            "fields": {"TEXT": "abc"}
-            }
-        }
-        }
     }
     ]
     },
@@ -246,7 +140,7 @@ const toolbox = {
 		eval(code);
         ballPosition();
 	}
-
+    
   var myInterpreter = {};
 
   function initApi(interpreter, globalObject) {
@@ -259,43 +153,47 @@ const toolbox = {
 
     // Add an API function for the prompt() block.
     wrapper = function(text) {
-      return highlightBlock(text);
+        return highlightBlock(text);
     };
     interpreter.setProperty(globalObject, 'highlightBlock',
-        interpreter.createNativeFunction(wrapper));
+    interpreter.createNativeFunction(wrapper));
   } 
-
+  
   function updateCodeSteps() {
-    Blockly.JavaScript.STATEMENT_PREFIX = 'highlightBlock(%1);\n';
-    Blockly.JavaScript.addReservedWords('code');
+      Blockly.JavaScript.STATEMENT_PREFIX = 'highlightBlock(%1);\n';
+      Blockly.JavaScript.addReservedWords('code');
     
-    const code = Blockly.JavaScript.workspaceToCode(workspace);
+      const code = Blockly.JavaScript.workspaceToCode(workspace);
+      
+      myInterpreter = new Interpreter(code, initApi);
+      console.log("myInterpreter", myInterpreter);
+      
+      console.log("generated code:", code);
+      //eval(code);
+      ballPosition();
+      nextStep();
+      
+    }
     
-    myInterpreter = new Interpreter(code, initApi);
-    console.log("myInterpreter", myInterpreter);
-
-    console.log("generated code:", code);
-    //eval(code);
-    nextStep();
-    
-  }
-
-  var wait_flag = false;
+    var wait_flag = false;
 	
 	function nextStep() {
+
     //console.log("myInterpreter2", myInterpreter);
-   	if (myInterpreter.step()) {
-      let timer = 1;
-      if(wait_flag){
-        timer = 100;
-      }else{
+    if (myInterpreter.step()) {
+        let timer = 1;        
+        if(wait_flag){
+        timer = 30;
+        ballPosition();
+
+    }else{
         timer = 1;
-      }
-      wait_flag = !wait_flag;
-   		setTimeout(nextStep, timer);
-			
-	 	}
-	}
+    }
+    wait_flag = !wait_flag;
+    setTimeout(nextStep, timer);
+}
+    
+}
 	
     // workspace.addChangeListener(updateCode);
 </script>

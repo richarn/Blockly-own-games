@@ -1,11 +1,11 @@
 #cuadrado{
     background-color: red;
-    height: 40px;
-    width: 40px;
-    border-radius: 0px;
-    position: relative;
-    transform:rotate();
- }
+    height: 20px;
+    width: 20px;
+    border-radius: 80px;
+    position: absolute;
+
+}
  
  .demo{
     float: left;
@@ -14,7 +14,7 @@
  .space-game{
      width: 800px;
      height: 600px;
-    background-color: aquamarine;
+    background-color: rgb(3, 186, 70);
     position: relative;
     float: right;
     margin-right: 100px;
@@ -35,7 +35,7 @@
     border-radius: 0px;
     position: absolute;
     top: 50%;
-    left: 50%;
+    left: 48%;
 }
 .squad2{
     background-color: rgb(73, 209, 141);
