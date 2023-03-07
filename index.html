@@ -36,19 +36,19 @@
 
         <table  class="table table-bordered border-primary  table-game" id="table">
             <tr>
-                <td>0.0</td>
-                <td>0.1</td>
-                <td>0.2</td>
+                <td id="x_0_0"></td>
+                <td id="x_0_1"></td>
+                <td id="x_0_2"></td>
             </tr>
             <tr>
-                <td>1.0</td>
-                <td>1.1</td>
-                <td>1.2</td>
+                <td id="x_1_0"></td>
+                <td id="x_1_1"></td>
+                <td id="x_1_2"></td>
             </tr>
             <tr>
-                <td>2.0</td>
-                <td>2.1</td>
-                <td>2.2</td>
+                <td id="x_2_0"></td>
+                <td id="x_2_1"></td>
+                <td id="x_2_2"></td>
             </tr>
         </table>
         
@@ -164,7 +164,6 @@ const toolbox = {
 		Blockly.JavaScript.STATEMENT_PREFIX = 'highlightBlock(%1);\n';
 		Blockly.JavaScript.addReservedWords('code');
 		eval(code);
-        ballPosition();
 	}
     
   var myInterpreter = {};
@@ -196,7 +195,6 @@ const toolbox = {
       
       console.log("generated code:", code);
       //eval(code);
-    //   ballPosition();
       nextStep();
       
     }
@@ -210,7 +208,6 @@ const toolbox = {
         let timer = 1;        
         if(wait_flag){
         timer = 30;
-        // ballPosition();
 
     }else{
         timer = 1;

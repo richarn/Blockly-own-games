@@ -17,8 +17,12 @@
     margin-left: 48%;
 }   
 .table-game{
-    background-color: rgb(9, 211, 110);    
+    background-color: rgb(9, 211, 110);
+    
 }
+td{
+    height: 195px;;    
+} 
 
 .img-flag{
     width: 100px;
