@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html lang="en-ES">
-<head>
-    <meta charset="UTF-8">
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-	<link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css" rel="stylesheet"/>
-	
-	<script src="acorn_interpreter.js"></script>
-	<script src="acorn.js"></script>
-	<script src="interpreter.js"></script>
+    <head>
+        <meta charset="UTF-8">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+        <link href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css" rel="stylesheet"/>
+        
+        <script src="acorn_interpreter.js"></script>
+        <script src="acorn.js"></script>
+        <script src="interpreter.js"></script>
+        
+        <link rel="stylesheet" type="text/css" href="style.css">
+        <script src="https://unpkg.com/blockly/blockly.min.js"></script>
+        <script src="https://unpkg.com/blockly"></script>
+        <script src="https://unpkg.com/blockly/javascript_compressed"></script>
+        <script src="https://unpkg.com/blockly/python_compressed"></script>
+        <script src="https://unpkg.com/blockly/msg/es.js"></script>
+        <script src="blocks.js"></script>
 
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <script src="https://unpkg.com/blockly/blockly.min.js"></script>
-    <script src="https://unpkg.com/blockly"></script>
-    <script src="https://unpkg.com/blockly/javascript_compressed"></script>
-    <script src="https://unpkg.com/blockly/python_compressed"></script>
-    <script src="https://unpkg.com/blockly/msg/es.js"></script>
-    <script src="blocks.js"></script>
-
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
 <body>
 
   <div class="content">
@@ -30,9 +32,28 @@
 		<button onclick="updateCodeSteps()" id="stepButton">Step JavaScript</button>
 	</p>
   
-    <div class="space-game">
-      	<div id="cuadrado"></div>
-      	<img id="flag" class="img-flag" src="https://cdn-icons-png.flaticon.com/512/33/33871.png"/>
+    <div class="table-responsive space-game">
+
+        <table  class="table table-bordered border-primary  table-game" id="table">
+            <tr>
+                <td>0.0</td>
+                <td>0.1</td>
+                <td>0.2</td>
+            </tr>
+            <tr>
+                <td>1.0</td>
+                <td>1.1</td>
+                <td>1.2</td>
+            </tr>
+            <tr>
+                <td>2.0</td>
+                <td>2.1</td>
+                <td>2.2</td>
+            </tr>
+        </table>
+        
+      	<!-- <div id="cuadrado"></div> -->
+      	<!-- <img id="flag" class="img-flag" src="https://cdn-icons-png.flaticon.com/512/33/33871.png"/> -->
 	</div>
   </div>
   
@@ -42,21 +63,11 @@
 <script>
 
 
-    var flag = document.getElementById('flag');
-    var bandera = flag.getBoundingClientRect();
+    // var flag = document.getElementById('flag');
+    // var bandera = flag.getBoundingClientRect();
     
-    console.log('flag-top:', bandera);
+    // console.log('flag-top:', bandera);
     
-function ballPosition() {
-    const element = document.getElementById('cuadrado');
-    const ball = element.getBoundingClientRect();
-
-    if( ball.top == 341 && ball.left == 1394 ){
-        alert("Adentro, lo lograste!").destroy();
-    }
-    console.log('cuadrado-top:', ball.top, 'cuadrado-left:', ball.left);
-
-}
 
 const toolbox = {
     "contents": [
@@ -101,7 +112,7 @@ const toolbox = {
     { 
     "kind": "category",
     "name": "Movements",
-    "colour": "%{BKY_PROCEDURES_HUE}",
+    "colour": "%{BKY_MOVEMENTS_HUE}",
     "contents": [
             {
             "kind": "block",
@@ -125,6 +136,21 @@ const toolbox = {
             },
         ]
     },
+    {
+    "kind": "category",
+    "name": "Verify",
+    "colour":  "%{BKY_VERIFY_HUE}",
+    "contents": [
+            {
+            "kind": "block",
+            "type": "verificar",
+            },
+            {
+            "kind": "block",
+            "type": "pelota adentro",
+            },
+        ]   
+    }
 ]
 };
     var workspace = Blockly.inject('blocklyDiv', {toolbox:toolbox});
@@ -170,7 +196,7 @@ const toolbox = {
       
       console.log("generated code:", code);
       //eval(code);
-      ballPosition();
+    //   ballPosition();
       nextStep();
       
     }
@@ -184,7 +210,7 @@ const toolbox = {
         let timer = 1;        
         if(wait_flag){
         timer = 30;
-        ballPosition();
+        // ballPosition();
 
     }else{
         timer = 1;

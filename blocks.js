@@ -34,7 +34,56 @@ Blockly.JavaScript['mover'] = function(block) {
 };
 
 
+
+  //block verificar
+  Blockly.Blocks['verificar'] = {
+    init: function() {
+
+      this.jsonInit({
+
+        "type": "check",
+        "message0": "Verificar %1",
+      "args0": [
+        {
+        "type": "input_value",
+        "name": "Verificar"
+        
+      }
+    ],
+    "previousStatement": null,
+    "colour": 180,
+    "tooltip": "",
+    "helpUrl": ""
+  });
+  }
+}
+
+    //generador move down
+    Blockly.JavaScript['verificar'] = function(block) {
+      // returns a string for testing.
+      return ['"verificar"', Blockly.JavaScript.ORDER_MEMBER];
+    }    
+
   //genera el bloque
+  Blockly.Blocks['pelota adentro'] = {
+      init: function() {
+        this.jsonInit({
+          "message0": '"Pelota adentro"',
+          "args0": [],
+          "output": "String",
+          "colour": 180,
+          "tooltip": "pelota"
+        });
+      }
+    };
+
+    //generador move down
+    // Blockly.JavaScript['pelota adentro'] = function(block) {
+    //   // returns a string for testing.
+    //   return ['"ballPosition"', Blockly.JavaScript.ORDER_MEMBER];
+    // }    
+
+    //genera el bloque
   Blockly.Blocks['move_up'] = {
       init: function() {
         this.jsonInit({

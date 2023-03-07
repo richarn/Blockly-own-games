@@ -52,14 +52,19 @@ function move_rigth() {
 	cuadradito.style.left = x + 'px';
 }
 
-// function rotate_rigth(){
-// 	r = 45;
-// 	cuadradito.style.rotate = r + 'deg';
-// 	console.log(cuadradito);
-// }
+// function ballPosition() {
+// 	const element = document.getElementById('cuadrado');
+// 	const ball = element.getBoundingClientRect();
 
+// 	if( ball.top == 341 && ball.left == 1394 ){
+// 		alert("Adentro, lo lograste!").destroy();
+// 	}
+// 	console.log('cuadrado-top:', ball.top, 'cuadrado-left:', ball.left);
+
+// }
 // window.onkeyup = movimiento;
 
+//funcion para bloque mover
 function mover(direccion){
 
 	if (direccion == "move_up") {
@@ -77,9 +82,32 @@ function mover(direccion){
 	if (direccion == "move_rigth") {
 		move_rigth();
 	}
-	//rotate function
-	// if (direccion == "rotate_rigth") {
-	// 	rotate_rigth();
-	// }
-	return "test";
+
 }
+
+ function verificar(){
+	ballPosition();
+ }
+
+ var table = [];
+ var ballStyle = `
+	background-color: red;
+	height: 20px;
+	width: 20px;
+	border-radius: 80px;
+	position: absolute;
+ `;
+ 
+ var tabla = document.getElementById("table");
+ for (var i = 0, row; row = tabla.rows[i]; i++) {
+
+	for (var j = 0, col; col = row.cells[j]; j++) {
+		// console.log(`Txt: ${col.innerText} \tFila: ${i} \t Celda: ${j}`);
+	}
+}
+const celda = tabla.rows[0].cells[1];
+celda.style.cssText = ballStyle;
+// console.log(tabla.rows[10].cells[1].style.ballStyle);
+ 
+
+

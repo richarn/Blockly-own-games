@@ -12,12 +12,12 @@
  }
  
  .space-game{
-     width: 800px;
-     height: 600px;
-    background-color: rgb(3, 186, 70);
-    position: relative;
-    float: right;
-    margin-right: 100px;
+
+    margin-right: 1%;
+    margin-left: 48%;
+}   
+.table-game{
+    background-color: rgb(9, 211, 110);    
 }
 
 .img-flag{
