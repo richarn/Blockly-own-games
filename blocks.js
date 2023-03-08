@@ -64,6 +64,7 @@ Blockly.JavaScript['mover'] = function(block) {
       return ['"verificar"', Blockly.JavaScript.ORDER_MEMBER];
     }    
 
+    
   //genera el bloque
   Blockly.Blocks['pelota adentro'] = {
       init: function() {
@@ -77,11 +78,6 @@ Blockly.JavaScript['mover'] = function(block) {
       }
     };
 
-    //generador move down
-    // Blockly.JavaScript['pelota adentro'] = function(block) {
-    //   // returns a string for testing.
-    //   return ['"ballPosition"', Blockly.JavaScript.ORDER_MEMBER];
-    // }    
 
     //genera el bloque
   Blockly.Blocks['move_up'] = {

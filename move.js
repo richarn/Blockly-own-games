@@ -6,13 +6,13 @@ var x = [
 
 
 function move_up() {
-
+	
 	let x2 = x.map(function(arr) {
 		return arr.slice();
 	});
-
+	
 	for (let i = 0; i < x.length; i++) {
-
+		
 		for (let j = 0; j < x[i].length; j++) {
 
 			if (x[i][j] == 1) {
@@ -38,9 +38,9 @@ function move_down() {
 		return arr.slice();
 	});
 	for (let i = 0; i < x.length; i++) {
-
+		
 		for (let j = 0; j < x[i].length; j++) {
-
+			
 			if (x[i][j] == 1) {
 				if(i>=(x.length-1)){
 					console.log("Fuera de matriz");	
@@ -63,9 +63,9 @@ function move_left() {
 	let x2 = x.map(function(arr) {
 		return arr.slice();
 	});
-
+	
 	for (let i = 0; i < x.length; i++) {
-
+		
 		for (let j = 0; j < x[i].length; j++) {
 
 			if (x[i][j] == 1) {
@@ -115,7 +115,7 @@ function move_rigth() {
 
 //funcion para bloque mover
 function mover(direccion){
-
+	
 	if (direccion == "move_up") {
 		move_up();
 	}
@@ -131,61 +131,46 @@ function mover(direccion){
 	if (direccion == "move_rigth") {
 		move_rigth();
 	}
-
+	
 }
 
- function verificar(){
+function verificar(){
 	ballPosition();
- }
+}
 
 function updateTable() {
 	for (let i = 0; i < x.length; i++) {
-
+		
 		for (let j = 0; j < x[i].length; j++) {
-		if (x[i][j] == 0) {
-			var celda = document.getElementById('x_'+i+'_'+j);
+			
+			if (x[i][j] == 0) {
+				var celda = document.getElementById('x_'+i+'_'+j);
 			celda.style.backgroundColor = "green";
+			celda.style.backgroundImage = "none";
 		}
+		
 		if (x[i][j] == 1) {
 			var celda = document.getElementById('x_'+i+'_'+j);
-			celda.style.backgroundColor = "red";
+			celda.style.backgroundImage = "url('https://freepngimg.com/thumb/categories/2760.png')";
+			celda.style.backgroundSize = "cover";
+			celda.style.backgroundSize = "100% 100%";
+			celda.style.backgroundRepeat = "no-repeat";
 		}
+
 		if (x[i][j] == 2) {
 			var celda = document.getElementById('x_'+i+'_'+j);
-			celda.style.backgroundColor = "blue";
+			celda.style.backgroundImage = "url('https://www.freepnglogos.com/uploads/golf-flag-png/golf-flag-golf-png-transparent-Images-29.png')";
+			celda.style.backgroundSize = "cover";
+			celda.style.backgroundSize = "100% 100%";
+			celda.style.backgroundRepeat = "no-repeat";
 		}
 
-		}
 	}
 }
+}
 
-function dataTable(x,y){
+updateTable();
 
-	var ballStyle = `
-		background-color: red;
-		height: 20px;
-		width: 20px;
-		border-radius: 80px;
-		position: absolute;
-	`;
-	
-	var tabla = document.getElementById("table");
-	for (var i = 0, row; row = tabla.rows[i]; i++) {
-		
-		for (var j = 0, col; col = row.cells[j]; j++) {
-			// console.log(`Txt: ${col.innerText} \tFila: ${i} \t Celda: ${j}`);
-		}
-	}
-	if(x == null){
-		if (y == null) {
-			const defect = tabla.rows[0].cells[0];
-			defect.style.cssText = ballStyle;
-		}
-	}else{
-		const celda = tabla.rows[x].cells[y];
-		celda.style.cssText = ballStyle;
-	}
-} 
-// dataTable();
+
 
 

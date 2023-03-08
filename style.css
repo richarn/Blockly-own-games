@@ -12,12 +12,10 @@
  }
  
  .space-game{
-
-    margin-right: 1%;
-    margin-left: 48%;
+    max-width: 30%;
 }   
 .table-game{
-    background-color: rgb(9, 211, 110);
+    background-color: green;
     
 }
 td{
